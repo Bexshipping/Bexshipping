@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bex Shipping Tracker</title>
+</head>
+<body>
+  <h1>Track Your Shipment</h1>
+  <p id="tracking-info">Loading...</p>
+
+  <script>
+    // Get tracking number from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const trackingNumber = urlParams.get('track');
+
+    const info = document.getElementById("tracking-info");
+
+    if (trackingNumber) {
+      info.innerHTML = `
+        Tracking Number: <strong>${trackingNumber}</strong><br>
+        Status: <strong>In Transit</strong><br>
+        Estimated Delivery: <strong>April 12, 2025</strong>
+      `;
+    } else {
+      info.innerHTML = "No tracking number provided. Please use ?track=YOURNUMBER";
+    }
+  </script>
+</body>
+</html>
