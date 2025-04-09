@@ -1,130 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bex Shipping Tracker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #6e7dff, #34b7ff);
-      color: white;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Tracking - USA to Spain</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .container {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 500px;
-      width: 100%;
-    }
+        .tracking-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
+        .header {
+            color: #1a2a6c;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    .tracking-number {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #FFEB3B;
-      margin-bottom: 20px;
-    }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #b21f1f;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
 
-    .status {
-      font-size: 1.2em;
-      margin-bottom: 15px;
-    }
+        button {
+            background: #fdbb2d;
+            color: #1a2a6c;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
 
-    .details {
-      font-size: 1em;
-      margin-top: 20px;
-    }
+        button:hover {
+            transform: scale(1.05);
+        }
 
-    .footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #ddd;
-    }
+        .tracking-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(253, 187, 45, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
 
-    .highlight {
-      color: #FFEB3B;
-    }
+        .status {
+            color: #b21f1f;
+            font-weight: bold;
+            margin: 10px 0;
+        }
 
-    .input-field {
-      padding: 10px;
-      font-size: 1em;
-      width: 100%;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: 2px solid #FFEB3B;
-      background-color: #fff;
-      color: #333;
-    }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
 
-    .submit-btn {
-      background-color: #FFEB3B;
-      border: none;
-      color: #333;
-      font-size: 1.2em;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      background-color: #e0c200;
-    }
-
-  </style>
+        .progress {
+            width: 33%;
+            height: 100%;
+            background: #fdbb2d;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+    </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>Bex Shipping Tracker</h1>
-
-    <input type="text" id="trackingInput" class="input-field" placeholder="Enter your tracking number" />
-
-    <button class="submit-btn" onclick="trackShipment()">Track Shipment</button>
-
-    <div id="tracking-info" style="display:none;">
-      <p class="tracking-number" id="tracking-number"></p>
-      <p class="status" id="status">Status: In Transit</p>
-      <p class="details" id="details">Shipment coming from <span class="highlight">Nebraska, USA</span> to <span class="highlight">Valencia, Spain</span>.</p>
-      <p class="details">Estimated Delivery: <span id="delivery-date" class="highlight">April 10, 2025</span></p>
+    <div class="tracking-container">
+        <div class="header">Package Tracking</div>
+        
+        <!-- Generated Tracking Number -->
+        <p>Your Tracking Number: <strong id="trackingNum">USNE-VES${Math.random().toString(36).substr(2, 9).toUpperCase()}</strong></p>
+        
+        <input type="text" id="trackInput" placeholder="Enter Tracking Number">
+        <button onclick="trackPackage()">Track Package</button>
+        
+        <div class="tracking-info" id="trackingInfo">
+            <p>From: Nebraska, USA</p>
+            <p>To: Valencia, Spain</p>
+            <div class="status">Status: In Transit</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p>Estimated Delivery: April 10, 2025</p>
+        </div>
     </div>
 
-    <div class="footer">
-      <p>Track your shipment anytime at Bex Shipping.</p>
-    </div>
-  </div>
-
-  <script>
-    // Function to handle tracking
-    function trackShipment() {
-      const trackingInput = document.getElementById("trackingInput").value;
-      const trackingNumberElement = document.getElementById("tracking-number");
-      const trackingInfoElement = document.getElementById("tracking-info");
-
-      if (trackingInput.trim() === "") {
-        alert("Please enter a tracking number.");
-        return;
-      }
-
-      // Display the tracking info
-      trackingNumberElement.innerHTML = `Tracking Number: ${trackingInput}`;
-      trackingInfoElement.style.display = "block"; // Show the tracking info section
-    }
-  </script>
-
+    <script>
+        function trackPackage() {
+            const input = document.getElementById('trackInput').value.toUpperCase();
+            const generated = document.getElementById('trackingNum').textContent;
+            
+            if (input === generated) {
+                document.getElementById('trackingInfo').style.display = 'block';
+            } else {
+                alert('Please enter a valid tracking number');
+            }
+        }
+    </script>
 </body>
 </html>
