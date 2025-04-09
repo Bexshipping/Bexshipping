@@ -92,8 +92,8 @@
     <div class="tracking-container">
         <div class="header">Package Tracking</div>
         
-        <!-- Generated Tracking Number -->
-        <p>Your Tracking Number: <strong id="trackingNum">USNE-VES${Math.random().toString(36).substr(2, 9).toUpperCase()}</strong></p>
+        <!-- Specific Tracking Number -->
+        <p>Your Tracking Number: <strong id="trackingNum">USNE-55190276-VES518</strong></p>
         
         <input type="text" id="trackInput" placeholder="Enter Tracking Number">
         <button onclick="trackPackage()">Track Package</button>
@@ -111,8 +111,8 @@
 
     <script>
         function trackPackage() {
-            const input = document.getElementById('trackInput').value.toUpperCase();
-            const generated = document.getElementById('trackingNum').textContent;
+            const input = document.getElementById('trackInput').value;
+            const generated = "USNE-55190276-VES518";
             
             if (input === generated) {
                 document.getElementById('trackingInfo').style.display = 'block';
