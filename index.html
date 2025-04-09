@@ -59,6 +59,32 @@
       color: #FFEB3B;
     }
 
+    .input-field {
+      padding: 10px;
+      font-size: 1em;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 2px solid #FFEB3B;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .submit-btn {
+      background-color: #FFEB3B;
+      border: none;
+      color: #333;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #e0c200;
+    }
+
   </style>
 </head>
 <body>
@@ -66,13 +92,16 @@
   <div class="container">
     <h1>Bex Shipping Tracker</h1>
 
-    <p class="tracking-number" id="tracking-number">Tracking Number: 9876543210</p>
+    <input type="text" id="trackingInput" class="input-field" placeholder="Enter your tracking number" />
 
-    <p class="status" id="status">Status: In Transit</p>
+    <button class="submit-btn" onclick="trackShipment()">Track Shipment</button>
 
-    <p class="details" id="details">Shipment coming from <span class="highlight">Nebraska, USA</span> to <span class="highlight">Valencia, Spain</span>.</p>
-
-    <p class="details">Estimated Delivery: <span id="delivery-date" class="highlight">April 12, 2025</span></p>
+    <div id="tracking-info" style="display:none;">
+      <p class="tracking-number" id="tracking-number"></p>
+      <p class="status" id="status">Status: In Transit</p>
+      <p class="details" id="details">Shipment coming from <span class="highlight">Nebraska, USA</span> to <span class="highlight">Valencia, Spain</span>.</p>
+      <p class="details">Estimated Delivery: <span id="delivery-date" class="highlight">April 10, 2025</span></p>
+    </div>
 
     <div class="footer">
       <p>Track your shipment anytime at Bex Shipping.</p>
@@ -80,20 +109,20 @@
   </div>
 
   <script>
-    // Get tracking number from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const trackingNumber = urlParams.get('track');
+    // Function to handle tracking
+    function trackShipment() {
+      const trackingInput = document.getElementById("trackingInput").value;
+      const trackingNumberElement = document.getElementById("tracking-number");
+      const trackingInfoElement = document.getElementById("tracking-info");
 
-    const trackingNumberElement = document.getElementById("tracking-number");
-    const statusElement = document.getElementById("status");
-    const deliveryDateElement = document.getElementById("delivery-date");
+      if (trackingInput.trim() === "") {
+        alert("Please enter a tracking number.");
+        return;
+      }
 
-    if (trackingNumber) {
-      trackingNumberElement.innerHTML = `Tracking Number: ${trackingNumber}`;
-      statusElement.innerHTML = "Status: In Transit";
-      deliveryDateElement.innerHTML = "April 12, 2025"; // Update to match your real delivery date
-    } else {
-      trackingNumberElement.innerHTML = "No tracking number provided. Use ?track=YOURNUMBER in the URL.";
+      // Display the tracking info
+      trackingNumberElement.innerHTML = `Tracking Number: ${trackingInput}`;
+      trackingInfoElement.style.display = "block"; // Show the tracking info section
     }
   </script>
 
